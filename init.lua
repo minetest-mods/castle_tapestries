@@ -129,8 +129,20 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
+	output = 'castle_tapestries:tapestry',
+	recipe = {'cottages:wool', 'default:stick'},
+})
+
+minetest.register_craft({
+	type = "shapeless",
 	output = 'castle_tapestries:tapestry_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry'},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = 'castle_tapestries:tapestry_long',
+	recipe = {'cottages:wool', 'castle_tapestries:tapestry'},
 })
 
 minetest.register_craft({
@@ -138,6 +150,13 @@ minetest.register_craft({
 	output = 'castle_tapestries:tapestry_very_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry_long'},
 })
+
+minetest.register_craft({
+	type = "shapeless",
+	output = 'castle_tapestries:tapestry_very_long',
+	recipe = {'cottages:wool', 'castle_tapestries:tapestry_long'},
+})
+
 
 unifieddyes.register_color_craft({
 	output = "castle_tapestries:tapestry",
