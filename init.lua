@@ -13,6 +13,8 @@ else
 
 end
 
+-- cottages support
+local use_cottages = minetest.get_modpath("cottages")
 
 local tapestry = {}
 
@@ -144,20 +146,8 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
-	output = 'castle_tapestries:tapestry',
-	recipe = {'cottages:wool', 'default:stick'},
-})
-
-minetest.register_craft({
-	type = "shapeless",
 	output = 'castle_tapestries:tapestry_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry'},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = 'castle_tapestries:tapestry_long',
-	recipe = {'cottages:wool', 'castle_tapestries:tapestry'},
 })
 
 minetest.register_craft({
@@ -166,11 +156,25 @@ minetest.register_craft({
 	recipe = {'wool:white', 'castle_tapestries:tapestry_long'},
 })
 
-minetest.register_craft({
-	type = "shapeless",
-	output = 'castle_tapestries:tapestry_very_long',
-	recipe = {'cottages:wool', 'castle_tapestries:tapestry_long'},
-})
+if use_cottages then
+	minetest.register_craft({
+		type = "shapeless",
+		output = 'castle_tapestries:tapestry',
+		recipe = {'cottages:wool', 'default:stick'},
+	})
+
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = 'castle_tapestries:tapestry_long',
+		recipe = {'cottages:wool', 'castle_tapestries:tapestry'},
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = 'castle_tapestries:tapestry_very_long',
+		recipe = {'cottages:wool', 'castle_tapestries:tapestry_long'},
+	})
+end
 
 
 unifieddyes.register_color_craft({
