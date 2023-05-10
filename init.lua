@@ -71,6 +71,10 @@ minetest.register_node("castle_tapestries:tapestry", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
+	collision_box = {
+		type = "fixed",
+		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5},
+	},
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,1.5,0.5},
@@ -93,6 +97,10 @@ minetest.register_node("castle_tapestries:tapestry_long", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
+	collision_box = {
+		type = "fixed",
+		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5}, -- max height 1.5 see https://github.com/minetest/minetest/issues/9322
+	},
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,2.5,0.5},
@@ -115,6 +123,10 @@ minetest.register_node("castle_tapestries:tapestry_very_long", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
+	collision_box = {
+		type = "fixed",
+		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5}, -- max height 1.5 see https://github.com/minetest/minetest/issues/9322
+	},
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,3.5,0.5},
