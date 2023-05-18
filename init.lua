@@ -60,6 +60,15 @@ tapestry.colours = {
 
 -- Regular-length tapestry
 
+-- Currently only "fixed" collision boxes are handled in Minetest.
+-- The facedir resulting from the wallmounted direction is then used
+-- to rotate regular "fixed" boxes, hence the strange "Z/X/Y" order
+-- Also: maximal height is 1.5. See https://github.com/minetest/minetest/issues/9322
+local collisionbox_maxh = {
+	type = "fixed",
+	fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5},
+}
+
 minetest.register_node("castle_tapestries:tapestry", {
 	drawtype = "mesh",
 	mesh = "castle_tapestry.obj",
@@ -71,10 +80,7 @@ minetest.register_node("castle_tapestries:tapestry", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	collision_box = {
-		type = "fixed",
-		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5},
-	},
+	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,1.5,0.5},
@@ -97,10 +103,7 @@ minetest.register_node("castle_tapestries:tapestry_long", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	collision_box = {
-		type = "fixed",
-		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5}, -- max height 1.5 see https://github.com/minetest/minetest/issues/9322
-	},
+	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,2.5,0.5},
@@ -123,10 +126,7 @@ minetest.register_node("castle_tapestries:tapestry_very_long", {
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	collision_box = {
-		type = "fixed",
-		fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5}, -- max height 1.5 see https://github.com/minetest/minetest/issues/9322
-	},
+	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,3.5,0.5},
