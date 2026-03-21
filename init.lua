@@ -69,72 +69,78 @@ local collisionbox_maxh = {
 	fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5},
 }
 
-minetest.register_node("castle_tapestries:tapestry", {
+local function add_color_def(def)
+	def.palette = "unifieddyes_palette_colorwallmounted.png"
+	def.groups.ud_param2_colorable = 1
+
+	def.after_place_node = unifieddyes.fix_rotation_nsew
+	if unifieddyes.preserve_metadata then
+		-- Supported since 2026-02-12
+		def.preserve_metadata = unifieddyes.preserve_metadata
+	else
+		-- Fallback for older versions
+		def.on_dig = unifieddyes.on_dig
+	end
+	def.on_rotate = unifieddyes.fix_after_screwdriver_nsew
+
+	return def
+end
+
+
+core.register_node("castle_tapestries:tapestry", add_color_def({
 	drawtype = "mesh",
 	mesh = "castle_tapestry.obj",
 	description = S("Tapestry"),
 	tiles = {"castle_tapestry.png"},
 	inventory_image = "castle_tapestry_inv.png",
-	groups = {oddly_breakable_by_hand=3,flammable=3, ud_param2_colorable = 1},
+	groups = {oddly_breakable_by_hand=3,flammable=3},
 	sounds = default.node_sound_defaults(),
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
-	palette = "unifieddyes_palette_colorwallmounted.png",
 	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,1.5,0.5},
 	},
-	after_place_node = unifieddyes.fix_rotation_nsew,
-	on_dig = unifieddyes.on_dig,
-	on_rotate = unifieddyes.fix_after_screwdriver_nsew
-})
+}))
 
 -- Long tapestry
 
-minetest.register_node("castle_tapestries:tapestry_long", {
+core.register_node("castle_tapestries:tapestry_long", add_color_def({
 	drawtype = "mesh",
 	mesh = "castle_tapestry_long.obj",
 	description = S("Tapestry (Long)"),
 	tiles = {"castle_tapestry.png"},
 	inventory_image = "castle_tapestry_long_inv.png",
-	groups = {oddly_breakable_by_hand=3,flammable=3, ud_param2_colorable = 1},
+	groups = {oddly_breakable_by_hand=3,flammable=3},
 	sounds = default.node_sound_defaults(),
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
-	palette = "unifieddyes_palette_colorwallmounted.png",
 	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,2.5,0.5},
 	},
-	after_place_node = unifieddyes.fix_rotation_nsew,
-	on_dig = unifieddyes.on_dig,
-	on_rotate = unifieddyes.fix_after_screwdriver_nsew
-})
+}))
 
 -- Very long tapestry
 
-minetest.register_node("castle_tapestries:tapestry_very_long", {
+core.register_node("castle_tapestries:tapestry_very_long", add_color_def({
 	drawtype = "mesh",
 	mesh = "castle_tapestry_very_long.obj",
 	description = S("Tapestry (Very Long)"),
 	tiles = {"castle_tapestry.png"},
 	inventory_image = "castle_tapestry_very_long_inv.png",
-	groups = {oddly_breakable_by_hand=3,flammable=3, ud_param2_colorable = 1},
+	groups = {oddly_breakable_by_hand=3,flammable=3},
 	sounds = default.node_sound_defaults(),
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
-	palette = "unifieddyes_palette_colorwallmounted.png",
 	collision_box = table.copy(collisionbox_maxh),
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-0.5,-0.5,0.4375,0.5,3.5,0.5},
 	},
-	after_place_node = unifieddyes.fix_rotation_nsew,
-	on_dig = unifieddyes.on_dig,
-	on_rotate = unifieddyes.fix_after_screwdriver_nsew
-})
+}))
 
 -- Crafting
 
