@@ -1,9 +1,6 @@
 -- Used for localization, choose either built-in or intllib.
 local S = minetest.get_translator("castle_tapestries")
 
--- cottages support
-local use_cottages = minetest.get_modpath("cottages")
-
 local tapestry = {}
 
 minetest.register_alias("castle:tapestry_top", "castle_tapestries:tapestry_top")
@@ -161,26 +158,6 @@ minetest.register_craft({
 	output = 'castle_tapestries:tapestry_very_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry_long'},
 })
-
-if use_cottages then
-	minetest.register_craft({
-		type = "shapeless",
-		output = 'castle_tapestries:tapestry',
-		recipe = {'cottages:wool', 'default:stick'},
-	})
-
-
-	minetest.register_craft({
-		type = "shapeless",
-		output = 'castle_tapestries:tapestry_long',
-		recipe = {'cottages:wool', 'castle_tapestries:tapestry'},
-	})
-	minetest.register_craft({
-		type = "shapeless",
-		output = 'castle_tapestries:tapestry_very_long',
-		recipe = {'cottages:wool', 'castle_tapestries:tapestry_long'},
-	})
-end
 
 
 unifieddyes.register_color_craft({
