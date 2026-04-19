@@ -1,14 +1,14 @@
 -- Used for localization, choose either built-in or intllib.
-local S = minetest.get_translator("castle_tapestries")
+local S = core.get_translator("castle_tapestries")
 
 local tapestry = {}
 
-minetest.register_alias("castle:tapestry_top", "castle_tapestries:tapestry_top")
-minetest.register_alias("castle:tapestry", "castle_tapestries:tapestry")
-minetest.register_alias("castle:tapestry_long", "castle_tapestries:tapestry_long")
-minetest.register_alias("castle:tapestry_very_long", "castle_tapestries:tapestry_very_long")
+core.register_alias("castle:tapestry_top", "castle_tapestries:tapestry_top")
+core.register_alias("castle:tapestry", "castle_tapestries:tapestry")
+core.register_alias("castle:tapestry_long", "castle_tapestries:tapestry_long")
+core.register_alias("castle:tapestry_very_long", "castle_tapestries:tapestry_very_long")
 
-minetest.register_node("castle_tapestries:tapestry_top", {
+core.register_node("castle_tapestries:tapestry_top", {
 	drawtype = "nodebox",
 	description = S("Tapestry Top"),
 	tiles = {"default_wood.png"},
@@ -31,7 +31,7 @@ minetest.register_node("castle_tapestries:tapestry_top", {
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = 'castle_tapestries:tapestry_top',
 	recipe = {'default:stick'},
@@ -57,10 +57,10 @@ tapestry.colours = {
 
 -- Regular-length tapestry
 
--- Currently only "fixed" collision boxes are handled in Minetest.
+-- Currently only "fixed" collision boxes are handled in Luanti.
 -- The facedir resulting from the wallmounted direction is then used
 -- to rotate regular "fixed" boxes, hence the strange "Z/X/Y" order
--- Also: maximal height is 1.5. See https://github.com/minetest/minetest/issues/9322
+-- Also: maximal height is 1.5. See https://github.com/luanti-org/luanti/issues/9322
 local collisionbox_maxh = {
 	type = "fixed",
 	fixed = {0.4375,-0.5,-0.5,0.5,0.5,1.5},
@@ -141,19 +141,19 @@ core.register_node("castle_tapestries:tapestry_very_long", add_color_def({
 
 -- Crafting
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = 'castle_tapestries:tapestry',
 	recipe = {'wool:white', 'default:stick'},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = 'castle_tapestries:tapestry_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry'},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = 'castle_tapestries:tapestry_very_long',
 	recipe = {'wool:white', 'castle_tapestries:tapestry_long'},
@@ -203,7 +203,7 @@ for _, color in ipairs(tapestry.colours) do
 	table.insert(old_static_tapestries, "castle:very_long_tapestry_"..color)
 end
 
-minetest.register_lbm({
+core.register_lbm({
 	name = "castle_tapestries:convert_tapestries",
 	label = "Convert tapestries to use param2 color",
 	run_at_every_load = false,
@@ -245,8 +245,8 @@ minetest.register_lbm({
 			newname = "castle_tapestries:tapestry_very_long"
 		end
 
-		minetest.set_node(pos, { name = newname, param2 = param2 })
-		local meta = minetest.get_meta(pos)
+		core.set_node(pos, { name = newname, param2 = param2 })
+		local meta = core.get_meta(pos)
 		meta:set_string("dye", "unifieddyes:"..color)
 	end
 })
